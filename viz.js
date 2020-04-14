@@ -52,8 +52,8 @@ export class Renderer {
     const c = el.getContext("2d");
 
     c.lineWidth = 1;
-    c.fillStyle = "#bbb";
-    c.strokeStyle = "rgba(0,0,0,.8)";
+    c.fillStyle = "#111";
+    c.strokeStyle = "#999";
     return c;
   }
 
