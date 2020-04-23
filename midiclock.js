@@ -45,9 +45,11 @@ export class MidiClockInput {
     if (rawMessage === STOP) {
       this.messageCounter = 0;
       this.synchronized = false;
+      this.lastQuarterAt = undefined;
     } else if (rawMessage === START) {
       this.messageCounter = 0;
       this.synchronized = true;
+      this.lastQuarterAt = undefined;
     } else if (rawMessage === CLOCK) {
       this.messageCounter += 1;
     } else {
