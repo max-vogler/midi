@@ -16,7 +16,18 @@ export class MidiClockInput {
   }
 
   getInputs() {
-    return Array.from(this.midi.inputs.values());
+    return new Promise((resolve) => {
+      const resolveIfPresent = () => {
+        const inputs = this.midi.inputs;
+        if(inputs.size) {
+          this.midi.removeEventListener('statechange', resolveIfPresent);
+          resolve(Array.from(inputs.values()));
+        }
+      };
+
+      this.midi.addEventListener('statechange', resolveIfPresent);
+      resolveIfPresent();
+    });
   }
 
   listenTo(inputId) {
