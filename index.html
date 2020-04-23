@@ -2,74 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>MIDI / VIZ</title>
+    <title>MIDI / maxvogler.de</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-
       body,
       select,
       a:link,
-      a:visited {
-        font-family: monospace;
-        color: #999;
-        font-size: 18px;
+      a:visited,
+      h1 {
+        font-family: 'IBM Plex Mono', monospace;
+        color: #ddd;
         text-decoration: none;
       }
 
       html,
       body {
         background: #111;
-        width: 100%;
-        height: 100%;
+        font-size: 18px;
       }
 
       body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin: 40px;
       }
 
-      canvas {
-        display: block;
-        width: 600px;
-        height: 600px;
+      h1 {
+        font-weight: 200;
       }
 
-      select {
-        border: none;
-        background: none;
+      strong {
+        font-weight: 700;
       }
 
-      .source {
-        position: absolute;
-        bottom: 2em;
-        right: 2em;
+      .mt-50 {
+        display: inline-block;
+        margin-top: .5em;
       }
 
-      .beats {
-        position: absolute;
-        bottom: 2em;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .bpm {
-        position: absolute;
-        bottom: 2em;
-        left: 2em;
+      .ml-50 {
+        display: inline-block;
+        margin-left: .5em;
       }
     </style>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,400,700&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
   </head>
   <body>
-    <canvas width="600" height="600" id="l"></canvas>
-    <select class="source"></select>
-    <aside class="beats">MIDI NOT SUPPORTED</aside>
-    <aside class="bpm"></aside>
+    <h1><a href="https://maxvogler.de">maxvogler.de</a> / midi playground</h1>
 
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script type="module" src="main.js"></script>
+    <br>
+
+    <a href="/viz/">
+        <video src="viz/recording.mov" muted autoplay loop width="320"></video><br>
+        <span class="mt-50 ml-50"><strong>VIZ</strong>: Receive MIDI beat clock<br> and visualize the tempo.</a></span>
   </body>
-</html>
+  </html>

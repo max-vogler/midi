@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>MIDI / VIZ</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body,
+      select,
+      a:link,
+      a:visited {
+        font-family: monospace;
+        color: #999;
+        font-size: 18px;
+        text-decoration: none;
+      }
+
+      html,
+      body {
+        background: #111;
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        display: block;
+        width: 600px;
+        height: 600px;
+      }
+
+      select {
+        border: none;
+        background: none;
+      }
+
+      .source {
+        position: absolute;
+        bottom: 2em;
+        right: 2em;
+      }
+
+      .beats {
+        position: absolute;
+        bottom: 2em;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .bpm {
+        position: absolute;
+        bottom: 2em;
+        left: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="600" height="600" id="l"></canvas>
+    <select class="source"></select>
+    <aside class="beats">MIDI NOT SUPPORTED</aside>
+    <aside class="bpm"></aside>
+
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
