@@ -1,5 +1,7 @@
 # `TOUCH`- WebMIDI Playground
 
+<a href="https://midi.maxvogler.de/touch"><img src="https://media.giphy.com/media/W6chsX8Tx90lN5Vb6D/giphy.gif"></a>
+
 ## Use [midi.maxvogler.de/touch](https://midi.maxvogler.de/touch)
 1. Configure a virtual MIDI input device for your audio software of choice, e.g. …
    1. Download the [touch.tsi](https://raw.githubusercontent.com/max-vogler/midi/master/touch/touch.tsi) controller mapping to your computer.
