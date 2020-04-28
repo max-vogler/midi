@@ -3,6 +3,7 @@ const devicePixelRatio = window.devicePixelRatio || 1;
 const canvas = document.querySelector("canvas");
 const qrcode = document.getElementById("qrcode");
 const statusEl = document.getElementById("connection");
+const midiStatusEl = document.getElementById("midi-status");
 
 const ctx = canvas.getContext("2d");
 
@@ -37,7 +38,7 @@ function debounceDraw(e) {
     }
 
     if (coords) {
-      draw(coords);
+      processCoords(coords);
     }
     drawRequested = false;
   });
@@ -59,7 +60,10 @@ function transformPointerCoords(event) {
   }
 }
 
-function draw({ x, y }) {
+function processCoords({ x, y }) {
+  sendMidiSignal(0, x);
+  sendMidiSignal(1, y);
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const canvasX = x * document.body.clientWidth;
@@ -132,7 +136,7 @@ function initConnection(c) {
   });
 
   c.on("data", function (data) {
-    draw(data);
+    processCoords(data);
   });
 
   c.on("close", () => {
@@ -146,4 +150,26 @@ function initConnection(c) {
     currentConn = undefined;
     connectIfRequested();
   });
+}
+
+let midiDevice = undefined;
+
+navigator.requestMIDIAccess().then((midi) => {
+  midiDevice = Array.from(midi.outputs.values())[0];
+  midiStatusEl.innerText = `Sending MIDI to ${midiDevice.name}`;
+});
+
+function sendMidiSignal(channelNum, value) {
+  if (!midiDevice) {
+    return;
+  }
+
+  value = Math.min(1, Math.max(0, value));
+
+  const NOTE_ON = 0x90;
+  const pitch = channelNum;
+  const velocity = Math.round(value * 127);
+  const msg = [NOTE_ON, pitch, velocity];
+
+  midiDevice.send(msg);
 }

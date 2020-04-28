@@ -33,10 +33,18 @@
         width: 200px;
         height: 200px;
       }
+
+      #midi-status {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body>
     <canvas id="main"></canvas>
+    <div id="midi-status"></div>
     <div id="status">
       <span id="connection"></span><canvas id="qrcode"></canvas>
     </div>
