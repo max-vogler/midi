@@ -9,7 +9,7 @@
       a:link,
       a:visited,
       h1 {
-        font-family: 'IBM Plex Mono', monospace;
+        font-family: "IBM Plex Mono", monospace;
         color: #ddd;
         text-decoration: none;
       }
@@ -34,27 +34,44 @@
 
       .mt-50 {
         display: inline-block;
-        margin-top: .5em;
+        margin-top: 0.5em;
       }
 
       .ml-50 {
         display: inline-block;
-        margin-left: .5em;
+        margin-left: 0.5em;
       }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,400,700&amp;display=swap&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,400,700&amp;display=swap&amp;subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
     <h1><a href="https://maxvogler.de">maxvogler.de</a> / midi playground</h1>
 
-    <br>
+    <br />
 
     <a href="/viz/">
-        <video src="viz/recording.mov" muted autoplay loop width="320"></video><br>
-        <span class="mt-50 ml-50"><strong>VIZ</strong>: Receive MIDI beat clock<br> and visualize the tempo.</a></span>
+      <video src="viz/recording.mov" muted autoplay loop width="320"></video><br />
+      <span class="mt-50 ml-50">
+        <strong>VIZ</strong>: Receive MIDI beat clock<br />
+        and visualize the tempo.
+      </span>
+    </a>
+
+    <br /><br /><br />
+
+    <a href="/touch/">
+      <video src="touch/recording.mov" muted autoplay loop width="320"></video><br />
+      <span class="mt-50 ml-50">
+        <strong>TOUCH</strong>: Use touch input to control<br>
+        music effects.
+      </span>
+    </a>
   </body>
-  </html>
+</html>
