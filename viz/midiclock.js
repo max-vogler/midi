@@ -11,7 +11,10 @@ export class MidiClockInput {
   }
 
   async requestAccess() {
-    this.midi = await navigator.requestMIDIAccess();
+    this.midi = await navigator.requestMIDIAccess({
+      sysex: false,
+      software: false,
+    });
     return this.midi;
   }
 
@@ -19,13 +22,13 @@ export class MidiClockInput {
     return new Promise((resolve) => {
       const resolveIfPresent = () => {
         const inputs = this.midi.inputs;
-        if(inputs.size) {
-          this.midi.removeEventListener('statechange', resolveIfPresent);
+        if (inputs.size) {
+          this.midi.removeEventListener("statechange", resolveIfPresent);
           resolve(Array.from(inputs.values()));
         }
       };
 
-      this.midi.addEventListener('statechange', resolveIfPresent);
+      this.midi.addEventListener("statechange", resolveIfPresent);
       resolveIfPresent();
     });
   }
