@@ -49,32 +49,45 @@
         right: 2em;
       }
 
-      .beats {
+      .x-center {
         position: absolute;
-        bottom: 2em;
         left: 50%;
         transform: translateX(-50%);
       }
 
-      .bpm {
+      .left {
         position: absolute;
-        bottom: 2em;
         left: 2em;
       }
 
-      .about {
+      .right {
+        position: absolute;
+        right: 2em;
+      }
+
+      .top {
         position: absolute;
         top: 2em;
-        right: 2em;
+      }
+
+      .bottom {
+        position: absolute;
+        bottom: 2em;
       }
     </style>
   </head>
   <body>
-    <canvas width="600" height="600" id="l"></canvas>
-    <select class="source"></select>
-    <aside class="beats">MIDI NOT SUPPORTED</aside>
-    <aside class="bpm"></aside>
-    <a class="about" href="https://github.com/max-vogler/midi/tree/master/viz" target="_blank">?</a>
+    <canvas width="600" height="600" id="main-canvas"></canvas>
+
+    <select id="source-select" class="bottom left"></select>
+    <aside id="main-msg" class="bottom x-center">MIDI NOT SUPPORTED</aside>
+    <aside id="side-msg" class="bottom right"></aside>
+    <a
+      class="top right"
+      href="https://github.com/max-vogler/midi/tree/master/viz"
+      target="_blank"
+      >?</a
+    >
 
     <script type="module" src="main.js"></script>
   </body>

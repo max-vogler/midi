@@ -24,11 +24,11 @@ function quarterNoteEasing({ messageCounter }) {
   }
 }
 
-export class Renderer {
+export class StackedPolygonVisualizer {
   constructor(canvasEl) {
     this.clockMessage = {};
     this.size = canvasEl.width;
-    this.paused = false;
+    this.stopRequested = true;
     this.areaFull = [0, 0, this.size, this.size];
     this.areaLeft = [0, 0, this.size / 2, this.size];
     this.areaRight = [this.size / 2, 0, this.size / 2, this.size];
@@ -39,12 +39,22 @@ export class Renderer {
     this.cOut.fillStyle = "#111";
     this.cOut.canvas.style.maxWidth = `${this.size}px`;
     this.cOut.canvas.style.width = "100%";
-
-    canvasEl.addEventListener("click", () => {
-      this.paused = !this.paused;
-    });
   }
 
+  start() {
+    this.stopRequested = false;
+    this.renderLoop();
+  }
+
+  stop() {
+    this.stopRequested = true;
+  }
+
+  onClockMessage(msg) {
+    this.clockMessage = msg;
+  }
+
+  /** @private */
   initContext(el) {
     el.width = this.size;
     el.height = this.size;
@@ -57,23 +67,29 @@ export class Renderer {
     return c;
   }
 
-  renderFrame(t, sizeMod) {
-    if (this.paused) {
+  /** @private */
+  renderLoop() {
+    if (this.stopRequested) {
       return;
     }
+
+    const time = Date.now() * SPEED;
+    const notefrac = this.clockMessage.synchronized
+      ? quarterNoteEasing(this.clockMessage)
+      : 0;
 
     this.cOut.fillRect(...this.areaFull);
     this.cLeft.clearRect(...this.areaLeft);
     this.cRight.clearRect(...this.areaRight);
 
-    let polyRadius = MIN_POLY_RADIUS + 0 * sizeMod;
-    let radius = MIN_CIRCLE_RADIUS + 10 * sizeMod;
+    let polyRadius = MIN_POLY_RADIUS + 0 * notefrac;
+    let radius = MIN_CIRCLE_RADIUS + 10 * notefrac;
 
-    const rotation = (i) => Math.cos(INTERVAL * i) + t * Math.PI * 2;
+    const rotation = (i) => Math.cos(INTERVAL * i) + time * Math.PI * 2;
     for (let i = -PIH - OVERDRAW; i < PIH + OVERDRAW; i += STEP)
-      this.draw(this.cRight, i, rotation(i), polyRadius, radius);
+      this.drawPolygon(this.cRight, i, rotation(i), polyRadius, radius);
     for (let i = PIH - OVERDRAW; i < PI + PIH + OVERDRAW; i += STEP)
-      this.draw(this.cLeft, i, rotation(i), polyRadius, radius);
+      this.drawPolygon(this.cLeft, i, rotation(i), polyRadius, radius);
 
     this.cOut.drawImage(this.cLeft.canvas, ...this.areaLeft, ...this.areaLeft);
     this.cOut.drawImage(
@@ -81,9 +97,29 @@ export class Renderer {
       ...this.areaRight,
       ...this.areaRight
     );
+
+    requestAnimationFrame(() => this.renderLoop());
   }
 
-  poly(SIDES, r, a, x = 0, y = 0) {
+  /** @private */
+  drawPolygon(c, a, rot = 0, polyRadius, radius) {
+    const cx = this.size / 2 + Math.cos(a) * radius;
+    const cy = this.size / 2 + Math.sin(a) * radius;
+    c.beginPath();
+    this.getPolygonPoints(
+      SIDES,
+      polyRadius,
+      a + rot,
+      cx,
+      cy
+    ).forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+    c.closePath();
+    c.fill();
+    c.stroke();
+  }
+
+  /** @private */
+  getPolygonPoints(SIDES, r, a, x = 0, y = 0) {
     const step = (PI * 2) / SIDES;
     return Array(SIDES)
       .fill()
@@ -91,25 +127,5 @@ export class Renderer {
         x + Math.cos(a + i * step) * r,
         y + Math.sin(a + i * step) * r,
       ]);
-  }
-
-  draw(c, a, rot = 0, polyRadius, radius) {
-    const cx = this.size / 2 + Math.cos(a) * radius;
-    const cy = this.size / 2 + Math.sin(a) * radius;
-    c.beginPath();
-    this.poly(SIDES, polyRadius, a + rot, cx, cy).forEach(([x, y], i) =>
-      i ? c.lineTo(x, y) : c.moveTo(x, y)
-    );
-    c.closePath();
-    c.fill();
-    c.stroke();
-  }
-
-  render() {
-    const notefrac = this.clockMessage.synchronized
-      ? quarterNoteEasing(this.clockMessage)
-      : 0;
-    this.renderFrame(Date.now() * SPEED, notefrac);
-    requestAnimationFrame(() => this.render());
   }
 }
