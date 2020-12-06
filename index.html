@@ -2,80 +2,65 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>MIDI / maxvogler.de</title>
-    <style>
-      body,
-      select,
-      a:link,
-      a:visited,
-      h1 {
-        font-family: "IBM Plex Mono", monospace;
-        color: #ddd;
-        text-decoration: none;
-      }
-
-      html,
-      body {
-        background: #111;
-        font-size: 18px;
-      }
-
-      body {
-        margin: 40px;
-      }
-
-      h1 {
-        font-weight: 200;
-      }
-
-      strong {
-        font-weight: 700;
-      }
-
-      .mt-50 {
-        display: inline-block;
-        margin-top: 0.5em;
-      }
-
-      .ml-50 {
-        display: inline-block;
-        margin-left: 0.5em;
-      }
-    </style>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <title>Web MIDI Prototypes / maxvogler.de</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,400,700&amp;display=swap&amp;subset=latin-ext"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;1,100&display=swap"
       rel="stylesheet"
     />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
-    <h1><a href="https://maxvogler.de">maxvogler.de</a> / midi playground</h1>
+    <h1>Web MIDI Experiments</h1>
+    <p>
+      Interactive experiments that augment DJ software with web technology. Run
+      these in your browser and connect them to your favorite DJ software and
+      MIDI hardware. Read the source code and add your own experiment at
+      <a href="https://github.com/max-vogler/midi" target="_blank"
+        >github.com/max-vogler/midi</a
+      >.
+    </p>
 
-    <br />
-
-    <a href="/viz/">
-      <video src="viz/recording.mov" muted autoplay loop width="320"></video><br />
-      <span class="mt-50 ml-50">
-        <strong>VIZ</strong>: Receive MIDI beat clock<br />
-        and visualize the tempo.
-      </span>
+    <a class="card" href="/viz/">
+      <video src="viz/recording.mov" muted autoplay loop></video>
+      <div>/VIZ/ Visualize an external MIDI beat clock</div>
     </a>
 
-    <br /><br /><br />
-
-    <a href="/touch/">
-      <video src="touch/recording.mov" muted autoplay loop width="320"></video><br />
-      <span class="mt-50 ml-50">
-        <strong>TOUCH</strong>: Use touch input to control<br>
-        music effects.
-      </span>
+    <a class="card" href="/touch/">
+      <video src="touch/recording.mov" muted autoplay loop></video>
+      <div>/TOUCH/ Control effects with touch &amp; pressure</div>
     </a>
 
-    <br /><br /><br />
-    
-    <a class="ml-50" href="https://github.com/max-vogler/midi" target="_blank">github.com/max-vogler/midi</a>
+    <a class="card" href="/gateway/">
+      <video src="viz/recording.mov" muted loop></video>
+      <div>/GATEWAY/ Forward MIDI to another device with WebRTC</div>
+    </a>
+
+    <a class="card" href="/controller/">
+      <video src="viz/recording.mov" muted loop></video>
+      <div>/CONTROLLER/ Control music with gamepads</div>
+    </a>
   </body>
 </html>
