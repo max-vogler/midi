@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="controller.css" />
+  </head>
+  <body>
+    <main>
+      <h1>/// CONTROLLER ///</h1>
+
+      <h1>Gamepad input device</h1>
+      <div id="gamepad-status">Waiting for button input…</div>
+
+      <h1>MIDI output device</h1>
+      <div id="midi-status"></div>
+      <select id="output-select">
+        <option disabled selected>Requesting MIDI access.</option>
+      </select>
+
+      <div id="midi-signals"></div>
+    </main>
+
+    <iframe
+      src="https://gamepadviewer.com/?p=1&s=0&nocurve=1&sc=.5"
+      sandbox="allow-scripts"
+    ></iframe>
+
+    <a
+      class="about"
+      href="https://github.com/max-vogler/midi/tree/master/controller"
+      target="_blank"
+      title="About CONTROLLER"
+      >?</a
+    >
+
+    <script src="controller.js"></script>
+  </body>
+</html>
