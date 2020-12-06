@@ -15,4 +15,3 @@
    1. Restart Traktor Pro.
 1. Open [midi.maxvogler.de/touch](https://midi.maxvogler.de/touch) in your browser.
 1. Click and drag your mouse anywhere on the website. The X-Y coordinates now control the effects section of Traktor Pro.
-1. To control with the touch screen of your phone, scan the displayed QR code.
