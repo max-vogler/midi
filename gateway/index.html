@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>GATEWAY // WEB ⇒ MIDI</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="gateway.css" />
+  </head>
+  <body>
+    <main>
+      <h1>/// GATEWAY /// WEB ⇒ MIDI ///</h1>
+
+      <h1>Web input device</h1>
+      <div id="connection">Connecting to Peer.</div>
+
+      <h1>MIDI output device</h1>
+      <div id="midi-status"></div>
+      <select id="output-select">
+        <option disabled selected>Requesting MIDI access.</option>
+      </select>
+
+      <div id="midi-signals">Gateway is listening for commands…</div>
+    </main>
+
+    <a
+      class="about"
+      href="https://github.com/max-vogler/midi/tree/master/gateway"
+      target="_blank"
+      >?</a
+    >
+
+    <a target="_blank" id="qrcode"><canvas></canvas></a>
+
+    <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+    <script src="https://unpkg.com/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <script type="module" src="gateway.js"></script>
+  </body>
+</html>

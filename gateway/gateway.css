@@ -1,0 +1,72 @@
+html,
+body,
+#main {
+  background: #111;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+main {
+  padding: 0 2em;
+}
+
+h1 {
+  font: inherit;
+  margin: 2em 0 0 0;
+  padding: 0;
+}
+
+body,
+a:link,
+a:visited {
+  color: #eee;
+  font-family: monospace;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#status {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#qrcode {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#qrcode canvas {
+  width: 200px;
+  height: 200px;
+  display: block;
+}
+
+#midi-status {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.about {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+}
+
+#midi-signals {
+  white-space: pre;
+  margin-top: 2em;
+}
+
+select {
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  margin-left: -4px;
+}
