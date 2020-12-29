@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="handpose.css" />
+    <title>HANDPOSE ///</title>
+  </head>
+  <body>
+    <main>
+      <h1>/// HANDPOSE ///</h1>
+
+      <h1>Camera input</h1>
+      <div id="canvas-wrapper">
+        <video id="video" width="320" height="240" playsinline muted></video>
+        <canvas id="output"></canvas>
+      </div>
+
+      <h1>Hand openness</h1>
+      <pre id="detection">(loading handpose detection…)</pre>
+
+      <h1>MIDI output device</h1>
+      <div id="midi-status"></div>
+      <select id="output-select">
+        <option disabled selected>Requesting MIDI access.</option>
+      </select>
+
+      <div id="midi-signals"></div>
+    </main>
+
+    <a
+      class="about"
+      href="https://github.com/max-vogler/midi/tree/master/handpose"
+      target="_blank"
+      title="About HANDPOSE"
+      >?</a
+    >
+
+    <script src="https://unpkg.com/@tensorflow/tfjs-core@2.1.0/dist/tf-core.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.1.0/dist/tf-converter.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.1.0/dist/tf-backend-webgl.js"></script>
+    <script src="https://unpkg.com/@tensorflow-models/handpose@0.0.6/dist/handpose.js"></script>
+    <script src="handpose.js"></script>
+  </body>
+</html>

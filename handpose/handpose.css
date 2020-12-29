@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+
+html,
+body {
+  background: #111;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 1em 2em 0;
+  margin-bottom: 240px;
+}
+
+h1 {
+  font: inherit;
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+body,
+a:link,
+a:visited,
+h1,
+p,
+div {
+  color: #eee;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.about {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  display: block;
+  width: 3.4em;
+  padding: 1em 0;
+  text-align: center;
+}
+
+a:link,
+a:visited,
+select {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#midi-signals {
+  white-space: pre;
+  margin-top: 1em;
+  line-height: 1;
+}
+
+select {
+  border: none;
+  color: inherit;
+  font: inherit;
+  margin-left: -4px;
+  outline: none;
+  padding: 0 1em;
+  line-height: 2.8;
+  appearance: none;
+  cursor: pointer;
+}
+
+a:hover,
+select:hover {
+  background: #eee;
+  color: 111;
+}
+
+#canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 240px;
+}
+
+canvas {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+video {
+  display: block;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  width: auto;
+  height: auto;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+pre {
+  margin: 0;
+}
