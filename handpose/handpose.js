@@ -92,11 +92,12 @@ function calculateFingerOpenness(palmPoint, fingerPoints) {
   return 0.3 + ((distToTip - distToBase) / distToBase) * 0.8;
 }
 
-function processMidiOutputs(midiAccess) {
+async function processMidiOutputs(midiAccess) {
   outputSelectEl.innerHTML = "";
 
-  function selectMidiOutput(id) {
+  async function selectMidiOutput(id) {
     midiDevice = midiAccess.outputs.get(id);
+    await midiDevice.open();
   }
 
   outputSelectEl.onchange = (event) => selectMidiInput(event.target.value);
@@ -109,7 +110,7 @@ function processMidiOutputs(midiAccess) {
   }
 
   if (outputSelectEl.firstChild) {
-    selectMidiOutput(outputSelectEl.firstChild.value);
+    await selectMidiOutput(outputSelectEl.firstChild.value);
   } else {
     const option = document.createElement("option");
     option.text = `(none found)`;

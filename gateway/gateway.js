@@ -80,11 +80,12 @@ function renderTable(midiMessages) {
   midiSignalEl.innerText = columns.join("\n");
 }
 
-function processMidiOutputs(midiAccess) {
+async function processMidiOutputs(midiAccess) {
   outputSelectEl.innerHTML = "";
 
-  function selectMidiOutput(id) {
+  async function selectMidiOutput(id) {
     midiDevice = midiAccess.outputs.get(id);
+    await midiDevice.open();
   }
 
   outputSelectEl.onchange = (event) => selectMidiInput(event.target.value);
@@ -97,7 +98,7 @@ function processMidiOutputs(midiAccess) {
   }
 
   if (outputSelectEl.firstChild) {
-    selectMidiOutput(outputSelectEl.firstChild.value);
+    await selectMidiOutput(outputSelectEl.firstChild.value);
   } else {
     const option = document.createElement("option");
     option.text = `(none found)`;

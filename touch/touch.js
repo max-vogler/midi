@@ -41,15 +41,17 @@ function main() {
       .on("error", connectToPeer);
   } else {
     statusEl.innerText = "Waiting for MIDI device";
-    navigator.requestMIDIAccess().then((access) => {
+    navigator.requestMIDIAccess().then(async (access) => {
       access.onstatechange = () => processMidiOutputs(access);
+      await processMidiOutputs(access);
     });
   }
 }
 
-function processMidiOutputs(access) {
+async function processMidiOutputs(access) {
   const output = Array.from(access.outputs.values())[0];
   if (output) {
+    await output.open();
     statusEl.innerText = `Connected to ${output.name}`;
     sendMidiMessages = (messages) =>
       messages.forEach((msg) => output.send(msg));
