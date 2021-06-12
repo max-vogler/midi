@@ -6,7 +6,6 @@ const ctx = canvas.getContext("2d");
 const devicePixelRatio = window.devicePixelRatio || 1;
 const receiverId = window.location.hash.substr(1);
 let nextEvent = undefined;
-let deviceSupportsPressure = false;
 let peer = undefined;
 let sendMidiMessages = () => {};
 
@@ -77,9 +76,7 @@ function scheduleEvent(event) {
 
 function processScheduledEvent() {
   const { event, active } = nextEvent;
-  deviceSupportsPressure |=
-    event.pressure != 0 && event.pressure != 0.5 && event.pressure != 1;
-  const coords = transformPointerCoords(event);
+  const coords = transformPointerCoords(event, active);
 
   sendMidiMessages(convertToMidi(active, [coords.x, coords.y, coords.z]));
 
@@ -88,12 +85,17 @@ function processScheduledEvent() {
   nextEvent = undefined;
 }
 
-function transformPointerCoords(event) {
+function transformPointerCoords(event, active) {
+  // If the device does not support pressure, use the documented
+  // fallback of reporting 0.5 for a click.
+  const fallback = active ? 0.5 : 0;
+  const pressure = event.pressure ?? fallback;
+
   return {
     x: event.x / document.body.clientWidth,
     y: event.y / document.body.clientHeight,
     // Chrome on Android weirdly reports `pressure` in [0, 2].
-    z: deviceSupportsPressure ? Math.min(event.pressure, 1) : undefined,
+    z: Math.min(Math.max(pressure, 0), 1),
   };
 }
 
