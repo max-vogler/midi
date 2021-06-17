@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="latency.css" />
+  </head>
+  <body>
+    <main>
+      <h1>/// LATENCY ///</h1>
+
+      <h1>MIDI input &amp; output device</h1>
+      <div id="midi-status"></div>
+      <select id="output-select">
+        <option disabled selected>Requesting MIDI access.</option>
+      </select>
+
+      <h1>Sent…</h1>
+      <div id="last-message"></div>
+      <span id="sent-count">o</span> messages
+
+      <h1>Received…</h1>
+      Identical message after <span id="latency"></span> ms<br>
+
+      <span id="count">0</span> expected messages<br>
+      <span id="unknown-count">0</span> unknown messages<br>
+
+      <h1>Roundtrip latency</h1>
+      <table>
+        <tr>
+          <td>Min:</td>
+          <td><span id="latency-min"></span> ms</td>
+        </tr>
+        <tr>
+          <td>Mean:</td>
+          <td><span id="latency-mean"></span> ms</td>
+        </tr>
+        <tr>
+          <td>Max:</td>
+          <td><span id="latency-max"></span> ms</td>
+        </tr>
+      </table>
+    </main>
+
+    <a
+      class="about"
+      href="https://github.com/max-vogler/midi/tree/master/latency"
+      target="_blank"
+      title="About LATENCY"
+      >?</a
+    >
+
+    <script src="latency.js"></script>
+  </body>
+</html>
