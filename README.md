@@ -18,7 +18,7 @@ Play around with these experiments at [midi.maxvogler.de](http://midi.maxvogler.
 [`/controller`](./controller) translates Gamepad inputs to MIDI messages. [More…](./controller)
 
 ## `HANDPOSE`
-<a href="./handpose"><img src="https://media.giphy.com/media/U5xYvUsC4KxZaIcjFD/giphy.gif" width="400"></a><br>
+<a href="./handpose"><img src="https://media.giphy.com/media/cJzO6YOXVRASpdloGp/giphy.gif" width="400"></a><br>
 [`/handpose`](./handpose) uses hand gestures to generate MIDI messages. [More…](./handpose)
 
 ## `LATENCY`
